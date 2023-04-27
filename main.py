@@ -10,7 +10,7 @@ FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
-CHECKMARK = "✓✓✓"
+CHECKMARK = "✓"
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 
@@ -22,6 +22,8 @@ def start_timer():
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
+    if count_sec < 10:
+        count_sec = f"0{count_sec}"
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
