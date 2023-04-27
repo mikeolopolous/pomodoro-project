@@ -12,16 +12,15 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 timer = None
-mark = ""
 
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
-    global reps, mark
+    global reps
 
     window.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00", fill=BLACK)
     timer_label.config(text="Timer", fg=BLACK)
-    mark = ""
+    checkmark_label.config(text="")
     reps = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -48,7 +47,7 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    global timer, mark
+    global timer
 
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -60,7 +59,7 @@ def count_down(count):
         timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
-        # mark = ""
+        mark = ""
         for _ in range(math.floor(reps / 2)):
             mark += "✓"
         
